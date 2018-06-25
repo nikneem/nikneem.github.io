@@ -412,16 +412,23 @@ a:focus, a:active {
 .section-white {
   background-color: #FFFFFF;
 }
-
+.social-links a {
+ color: #aaa;
+ font-size: 1.5em;
+ margin: 0 5px 0 5px;
+}
+.social-links a:hover {
+  color: #fff;
+ }
 .navbar {
   border: 0;
   font-size: 16px;
+  background: transparent !important;
+  color: #fff;
 }
 .navbar .navbar-brand {
-  font-weight: 600;
-  margin: 5px 0px;
-  padding: 20px 15px;
-  font-size: 20px;
+  font-weight: 400;
+  font-size: 24px;
 }
 .navbar .navbar-nav > li > a {
   padding: 10px 15px;
