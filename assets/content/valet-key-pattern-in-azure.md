@@ -81,3 +81,10 @@ return new ValetKeyDto
     BlobName = blobName.ToString()
 };
 ```
+
+### The story continues
+
+OK, so now we have some nice server side feature allowing us to upload
+stuff directly into a blob container on an Azure Storage account. Good!
+But how about the client? Good question! The client is part of a next
+blog, the Valet Key Part 2 which is coming very soon!
