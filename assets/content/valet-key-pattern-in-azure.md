@@ -1,24 +1,25 @@
 # Valet Key Cloud Design Pattern in Azure
 
-Once in a while you run in to a solution whithout you even noticed there
+Once in a while you run in to a solution whithout you even noticing there
 was a problem. For me, the Valet Key pattern was such a solution. I used
 to work at a company where we planned to create import functionality
-for transactions. These transactions are loads and loads of transactions.
+for transactions. we're talking about loads and loads of transactions.
 The software system runs as an ASP.NET Web API, in a multi-tenant environment.
-A straigh-forward implementation of such an import, would potantially block
+
+A straight-forward implementation of such an import, would potantially block
 additional requests and thus other tenants to the service because of the
 server being busy importing a huge file.
 We tackled this problem to post the import job on a queue and run it
 distributed. What I didn't realize, was that the actual file upload
 itself was also a potential disaster waiting to happen.
 
-## So what's the deal
+## Tell me more, old man
 
 I'm developing software for over 2 decades. This means that for me there
 was a time it was actually a break-trough that you're able to upload files
 through the browser. Today, there's nothing special about uploading files
 and nobody cares about what technique works for you behind the scenes.
-For exmaple, uploading a new profile picture to facebook or instagram
+For example, uploading a new profile picture to facebook or instagram
 sets a whole lot of services in action. It's unlikely your picture perfectly
 meets the requirements for a profile picture so probably some scaling and
 optimizations will be done before your picture apprears in your profile.
@@ -34,7 +35,7 @@ resize and optimize it). After all was done, we would send a response to
 the client with the result image, or an error message in case something went
 wrong.
 
-### Tell me about the new kid on the block
+### The new kid on the block
 
 So here comes the Valet Key pattern. We now like to work with cloud solutions
 making your software live in a more and more distributed environment. Given
