@@ -1,12 +1,12 @@
 # Valet Key Cloud Design Pattern in Azure
 
-Once in a while you run in to a solution whithout you even noticing there
+Once in a while you run in to a solution without you even noticing there
 was a problem. For me, the Valet Key pattern was such a solution. I used
 to work at a company where we planned to create import functionality
 for transactions. we're talking about loads and loads of transactions.
 The software system runs as an ASP.NET Web API, in a multi-tenant environment.
 
-A straight-forward implementation of such an import, would potantially block
+A straight-forward implementation of such an import, would potentially block
 additional requests and thus other tenants to the service because of the
 server being busy importing a huge file.
 We tackled this problem to post the import job on a queue and run it
@@ -29,8 +29,8 @@ be processed. We all just accept is, it's nothing special.
 ### How did we do that in the past?
 
 In the past, when we uploaded pictures to an endpoint on the webserver
-and handle the incomming stream, or store the incomming stream as a file.
-Then we would immidiately process the incomming data (in case of a picture,
+and handle the incoming stream, or store the incoming stream as a file.
+Then we would immediately process the incoming data (in case of a picture,
 resize and optimize it). After all was done, we would send a response to
 the client with the result image, or an error message in case something went
 wrong.
@@ -59,8 +59,8 @@ with enough permissions, you're good to go.
 ![alt text](/assets/images/valet-key-pattern.svg 'The Valet Key Pattern process')
 Let's assume you have a website allowing users to upload a profile picture, you call
 the backend (your webserver) for access to storage. Your webserver creates a reference
-to a container in blob storage (compare a container with a folder on your harddrive
-for now). Then your server will reseve a spot in that container (called a BlockBlob).
+to a container in blob storage (compare a container with a folder on your hard drive
+for now). Then your server will reserve a spot in that container (called a BlockBlob).
 This is in fact a reference to a file (that doesn't exist yet). Then you will create
 temporary (write) access to the file. Doing so, gives you an access policy which you
 return to the client. Your client now has a valid endpoint to upload a file to, and
