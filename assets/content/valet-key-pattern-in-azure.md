@@ -1,24 +1,25 @@
-# Valet Key Cloud Design Pattern in Azure
+# Valet Key Cloud Design Pattern in Azure pt. 1
 
-Once in a while you run in to a solution whithout you even noticed there
+Once in a while you run in to a solution without you even noticing there
 was a problem. For me, the Valet Key pattern was such a solution. I used
 to work at a company where we planned to create import functionality
-for transactions. These transactions are loads and loads of transactions.
+for transactions. we're talking about loads and loads of transactions.
 The software system runs as an ASP.NET Web API, in a multi-tenant environment.
-A straigh-forward implementation of such an import, would potantially block
+
+A straight-forward implementation of such an import, would potentially block
 additional requests and thus other tenants to the service because of the
 server being busy importing a huge file.
 We tackled this problem to post the import job on a queue and run it
 distributed. What I didn't realize, was that the actual file upload
 itself was also a potential disaster waiting to happen.
 
-## So what's the deal
+## Tell me more, old man
 
 I'm developing software for over 2 decades. This means that for me there
 was a time it was actually a break-trough that you're able to upload files
 through the browser. Today, there's nothing special about uploading files
 and nobody cares about what technique works for you behind the scenes.
-For exmaple, uploading a new profile picture to facebook or instagram
+For example, uploading a new profile picture to facebook or instagram
 sets a whole lot of services in action. It's unlikely your picture perfectly
 meets the requirements for a profile picture so probably some scaling and
 optimizations will be done before your picture apprears in your profile.
@@ -28,13 +29,13 @@ be processed. We all just accept is, it's nothing special.
 ### How did we do that in the past?
 
 In the past, when we uploaded pictures to an endpoint on the webserver
-and handle the incomming stream, or store the incomming stream as a file.
-Then we would immidiately process the incomming data (in case of a picture,
+and handle the incoming stream, or store the incoming stream as a file.
+Then we would immediately process the incoming data (in case of a picture,
 resize and optimize it). After all was done, we would send a response to
 the client with the result image, or an error message in case something went
 wrong.
 
-### Tell me about the new kid on the block
+### The new kid on the block
 
 So here comes the Valet Key pattern. We now like to work with cloud solutions
 making your software live in a more and more distributed environment. Given
@@ -58,8 +59,8 @@ with enough permissions, you're good to go.
 ![alt text](/assets/images/valet-key-pattern.svg 'The Valet Key Pattern process')
 Let's assume you have a website allowing users to upload a profile picture, you call
 the backend (your webserver) for access to storage. Your webserver creates a reference
-to a container in blob storage (compare a container with a folder on your harddrive
-for now). Then your server will reseve a spot in that container (called a BlockBlob).
+to a container in blob storage (compare a container with a folder on your hard drive
+for now). Then your server will reserve a spot in that container (called a BlockBlob).
 This is in fact a reference to a file (that doesn't exist yet). Then you will create
 temporary (write) access to the file. Doing so, gives you an access policy which you
 return to the client. Your client now has a valid endpoint to upload a file to, and
@@ -87,4 +88,10 @@ return new ValetKeyDto
 OK, so now we have some nice server side feature allowing us to upload
 stuff directly into a blob container on an Azure Storage account. Good!
 But how about the client? Good question! The client is part of a next
-blog, the Valet Key Part 2 which is coming very soon!
+blog, the [Valet Key Part 2](https://hexmaster.nl/article/valet-key-pattern-pt-2).
+
+- Published 5/31/2019
+- Eduard Keilholz
+- [GitHub](https://github.com/nikneem)
+- [Twitter](https://twitter.com/ed_dotnet)
+- [LinkedIn](https://linkedin.com/in/nikneem)
