@@ -3,12 +3,14 @@
     "id": "valet-key-pattern-pt-2",
     "targetUrl": "/article/valet-key-pattern-pt-2",
     "title": "Valet Key Pattern in Azure pt.2",
-    "description": "This is the follow-up of part one and shows you how to implement the Valet Key pattern client-side. In this blog I use angular to upload files directly into Azure BLOB Storage"
+    "description": "This is the follow-up of part one and shows you how to implement the Valet Key pattern client-side. In this blog I use angular to upload files directly into Azure BLOB Storage",
+    "date": "2019-06-06T18:25:43.511Z"
   },
   {
     "id": "valet-key-pattern-in-azure",
     "targetUrl": "/article/valet-key-pattern-in-azure",
     "title": "Valet Key Pattern in Azure",
-    "description": "Once in a while you run into a design pattern and think... Why didn't I start using this ages ago? The Valet Key design pattern is one of those"
+    "description": "Once in a while you run into a design pattern and think... Why didn't I start using this ages ago? The Valet Key design pattern is one of those",
+    "date": "2019-05-31T18:25:43.511Z"
   }
 ]
