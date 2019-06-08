@@ -1,10 +1,10 @@
 # Valet Key Cloud Design Pattern in Azure pt. 2
 
-So as promised, i'm back with part 2 of the Valet Key design pattern blog. In [part 1](https://hexmaster.nl/article/valet-key-pattern-in-azure) I discussed how the design pattern works, how it works on Azure and how to implement the pattern using ASP.NET Core. This part, I'll talk about the client-side solution. I chose to use an Angular client. Not only because I like Angular, also because it's nice to have a javascript implementation directly uploading into the cloud. Let's go!
+So as promised, I'm back with part 2 of the Valet Key design pattern blog. In [part 1](https://hexmaster.nl/article/valet-key-pattern-in-azure) I showed how the design pattern works, how it works on Azure and how to implement the pattern using ASP.NET Core. In this second part, I'll show how to implement the client solution. I chose to use an Angular client. Not only because I like Angular, also because it's nice to have a javascript implementation directly uploading into the cloud.
 
-## So to briefly resume
+## Let's briefly resume part 1
 
-We wrote a backend system, that creates a Secure Access Signature (or SAS). That SAS is suitable for a specific endpoint. The backend system returns that endpoint and the actual SAS.
+I wrote a backend system, that creates a Secure Access Signature (or SAS). That SAS is suitable for a specific endpoint. This endpoint is represents a BLOB in Azure Storage. The SAS grants write-access to that endpoint. The backend system returns the endpoint and the corresponding SAS.
 
 ## Make use of the Azure Blob Storage javascript
 
@@ -78,6 +78,15 @@ uploadFile(file: File): Observable<IUploadProgress> {
 ```
 
 The service contains a method `aquireSasToken()` which calls our backend. The backend uses a valid Azure Storage Account connection string to create a SAS for a certain endpoint and returns this information. Then the `uploadToBlobStorage()` method is called, which uses the SAS to determine where to upload to, and also accepts the file. The `mapProgress()` keeps track of the upload progress and shows it in percentages.
+
+### One final note
+
+![alt text](/assets/images/valet-key-cors.png 'The Valet Key Pattern process')
+Just like your ASP.NET Web Application, an Azure Storage Account is protected with
+CORS. So in order to upload blobs using a JavaScript system like Angular you need
+set some CORS rules in Azure. This Angular project runs on localhost port 4200, so
+I added this origin, accepting all methods and all headers. Note these settings
+are not recommended in production environments.
 
 - Published 6/6/2019
 - Eduard Keilholz
